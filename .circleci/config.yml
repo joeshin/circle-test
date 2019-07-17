@@ -7,4 +7,4 @@ jobs:
     steps:
       - checkout
 
-      - run: git log $CIRCLE_BRANCH ^origin/master --pretty=oneline
+      - run: cat /bin
