@@ -7,14 +7,4 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Exit on postman
-          command: git log --pretty="%an %s" -n1 | grep -e '^Chris Poyzer .* updated paperless$'
-
-      - run:
-          name: Greeting
-          command: echo Hello, world.
-
-      - run:
-          name: Print the Current Time
-          command: date
+      - run: git log $CIRCLE_BRANCH ^origin/master --pretty=oneline
