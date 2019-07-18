@@ -2,16 +2,14 @@
 
 last_commited_files=$(git log --pretty="" --name-only -n1)
 
-# if multiple files we ignore unless all have .haultci
 for f in $last_commited_files
 do
   dir=$(dirname "${f}")
-  hault_file="$dir/.cihault"
-  if [ ! -f $hault_file ]; then
+  if [ $dir != "postman" ]; then
     echo "onwards..."
     exit 0
   fi
 done
 
-echo "haulting job, detected .cihault"
+echo "haulting job, postman update"
 circleci-agent step halt

@@ -8,10 +8,17 @@ jobs:
       - checkout
       - run: echo "hi"
       - run: |
+            last_commited_files=$(git log --pretty="" --name-only -n1)
 
-            latest_commit_author=$(git log --pretty=format:"%an" -n1)
-            latest_commit_message=$(git log --pretty=format:"%s" -n1)
-            if [ "$CIRCLE_BRANCH" = "master" ] && [ "$latest_commit_author" = "Joseph Shin" ] && "$latest_commit_message" == "NOPE" ]; then
-              circleci-agent step halt
-            fi
+            for f in $last_commited_files
+            do
+              dir=$(dirname "${f}")
+              if [ $dir != "postman" ]; then
+                echo "onwards..."
+                exit 0
+              fi
+            done
+
+            echo "haulting job, postman update"
+            circleci-agent step halt
       - run: echo "bye"
