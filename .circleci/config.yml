@@ -8,6 +8,8 @@ jobs:
       - checkout
       - run: echo "hi"
       - run: |
+            # this script haults job execution early if the latest commit
+            # is only changes in postman directory.
             last_commited_files=$(git log --pretty="" --name-only -n1)
 
             for f in $last_commited_files
