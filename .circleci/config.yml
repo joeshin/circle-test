@@ -7,7 +7,9 @@ jobs:
     steps:
       - checkout
       - run: echo "hi"
-      - run: |
+      - run:
+          name: Hault Postman Only Changes
+          command: |
             # this script haults job execution early if the latest commit
             # is only changes in postman directory.
             last_commited_files=$(git log --pretty="" --name-only -n1)
