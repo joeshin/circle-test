@@ -18,11 +18,11 @@ jobs:
             do
               dir=$(dirname "${f}")
               if [ $dir != "postman" ]; then
-                echo "onwards..."
+                echo "onwards... 👍"
                 exit 0
               fi
             done
 
-            echo "haulting job, postman update"
+            echo "🛑 haulting job, postman update"
             circleci-agent step halt
       - run: echo "bye"
