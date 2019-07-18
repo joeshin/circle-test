@@ -8,9 +8,10 @@ jobs:
       - checkout
       - run: echo "hi"
       - run: |
+
             latest_commit_author=$(git log --pretty=format:"%an" -n1)
             latest_commit_message=$(git log --pretty=format:"%s" -n1)
-            if [ "$CIRCLE_BRANCH" == "master" && "$latest_commit_author" == "Joseph Shin" && "$latest_commit_message" == "NOPE" ]; then
+            if [ "$CIRCLE_BRANCH" = "master" ] && [ "$latest_commit_author" = "Joseph Shin" ] && "$latest_commit_message" == "NOPE" ]; then
               circleci-agent step halt
             fi
       - run: echo "bye"
